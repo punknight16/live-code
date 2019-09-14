@@ -1,0 +1,11 @@
+trigger - user wants to publish content
+
+action - user sits down for a consultation with me, and we make something together 
+
+variable reward - [views, actions, registrations, payments]
+
+investment - 
+
+
+How can I improve one person's life?
+--Once a week, they give me content and I find a way to upload it and monetize it.

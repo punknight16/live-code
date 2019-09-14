@@ -1,0 +1,107 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+h1:focus,
+h2:focus,
+h3:focus
+ {
+    outline: none;
+}
+
+section {
+	margin-top: 100px;
+}
+
+h1, h2, h3 {
+	margin-bottom: 6px;
+}
+
+#main {
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-bottom: 100px;
+}
+.chat-bar-position {
+	position: fixed;
+	bottom: 40px;
+	left: 100px;
+}
+.chat-input-darkmode {
+	opacity: .8;
+	background: black;
+	color: white;
+}
+.chat-log-position {
+	position: fixed;
+	bottom: 80px;
+	left: 100px;
+}
+.chat-log-darkmode {
+	opacity: .8;
+	background: black;
+	color: white;
+}
+.help-box-position {
+	position: fixed;
+	top: 20px;
+	right: 40px;
+}
+.help-box-style {
+	border: 1px solid gray;
+	border-radius: 4px;
+	padding: 10px;
+	background-color: pink;
+	z-index: 2;
+}
+li {
+	margin-left: 20px;
+}
+input {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 16px;
+	line-height: 1.8;
+	border: 1px solid gray;
+	border-radius: 4px;
+	padding-left: 6px;
+	padding-right: 6px;
+}
+p {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 16px;
+	line-height: 1.5;
+	padding-left: 6px;
+	padding-right: 6px;
+	opacity: 1;
+}
+.one-column-60 {
+	width: 60%;
+}
+
+.one-column-40 {
+	width: 40%;
+}
+
+
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 36px
+  }
+  h2 {
+    font-size: 24px
+  }
+  h3 {
+    font-size: 14px;
+  }
+ 	.one-column-60 {
+ 		width: 90%;
+ 	}
+ 	.one-column-40 {
+ 		width: 80%;
+ 	}
+}

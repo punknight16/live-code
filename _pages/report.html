@@ -1,0 +1,104 @@
+<html>
+<head>
+	<script
+		  src="https://code.jquery.com/jquery-3.4.1.js"
+		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		  crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="../_static/css/report.css">
+	<link rel="stylesheet" type="text/css" href="../_static/css/modal.css">
+	<script src="../_static/build/amazon-cognito-identity.min.js"></script>
+	<script src="../_static/build/aws-sdk.min.js"></script>
+	<script src="../_static/js/cognito.js"></script>
+</head>
+<body>
+	<main id='main' class='d-flex'>
+		<h1>Report</h1>
+		<hr style='width: 60%; border-width: 2px; border-color: black;' />
+		<br />
+
+		<h2>Actions</h2>
+		<div id='actions' style='width:300px;'></div>
+		<br />
+
+		<h2>Feedback</h2>
+		<form id='form'>
+		<div id='registerUserTypeInput'>
+			<h3>I am a:</h3>
+			<span><input type='radio' name='userTypeInput' value='blogger'/>Blogger</span>
+			<span><input type='radio' name='userTypeInput' value='creative'/>Creative</span>
+			<span><input type='radio' name='userTypeInput' value='non-technical entrepreneur'/>Entrepreneur</span>
+			<span><input type='radio' name='userTypeInput' value='other'/>Other</span>
+		</div>
+		<br />
+		
+		<div id='registerLiveVideoInput'>
+			<h3>I want Live Video Chat to be: </h3>
+			<span><input type='radio' name='liveVideoInput' value='live-video-present'/>Present</span>
+			<span><input type='radio' name='liveVideoInput' value='live-video-neutral'/>Don't Care</span>
+			<span><input type='radio' name='liveVideoInput' value='live-video-absent'/>Absent</span>
+		</div>
+		<br />
+			
+		<div id='registerLiveAudioInput'>
+			<h3>I want Live Audio Chat to be: </h3>
+			<span><input type='radio' name='liveAudioInput' value='live-audio-present'/>Present</span>
+			<span><input type='radio' name='liveAudioInput' value='live-audio-neutral'/>Don't Care</span>
+			<span><input type='radio' name='liveAudioInput' value='live-audio-absent'/>Absent</span>
+		</div>
+		<br />
+
+
+		<br />
+		<div>
+			<h3>Email:</h3>
+			<span>
+				<input id='registerEmailInput' type='text' size='30' placeholder='email' />&nbsp;
+				<button id='registerButton'>Submit</button>
+			</span>
+			<div id='registerErrorPanel' class='hide' 
+				style='text-align: center; width: 347px;'>
+			<small><span class='text-error'>*</span>One or more fields is invalid.</small>
+				</div>
+		</div>
+		</form>
+		<section class='d-flex'>
+			<hr style='width: 375px; border-width: 1px; border-color: black;' />
+			<br />
+			<div>
+				<strong>Site Map</strong>
+				&nbsp;◆&nbsp;
+				<strong>© 2019</strong>
+			</div>
+			<div><a href='../index.html'>Home</a>
+			<a href='../_pages/demo.html'>Demo</a>
+			<a href='../_pages/report.html'>Report</a>
+			<a href='../_pages/dashboard.html'>Dashboard</a></div>
+		</section>
+	</main>
+
+	<div id="errorModal" class="modal">
+	   
+	  <!-- Modal content -->
+	  <div id='errorModalContent' class="modal-content" style='background-color: white;'>
+	  	<span id='errorSpan' class="close">&times;</span>
+	    <div class="d-flex d-flex-center">
+	    	<img src="../_static/imgs/error.png" width="300px" />
+	    </div>
+	  </div>
+	</div>
+
+	<div id="confirmModal" class="modal">
+	  <!-- Modal content -->
+	  <div id='confirmModalContent' class="modal-content" style='background-color: white'>
+	    <span id='confirmSpan' class="close">&times;</span>
+	    <section id='confirm-section' class='d-flex'>
+				<h3 style='margin: 50px;'>Thanks for your Feedback<h3>
+				<button id='confirmButton' style='margin: 50px;'>Return to Landing Page</button>
+			</section>
+	  </div>
+	</div>
+
+	<script src='../_static/js/report.js'></script>
+	<script src='../_static/js/modal.js'></script>
+</body>
+</html>

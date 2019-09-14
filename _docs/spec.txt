@@ -1,0 +1,13 @@
+product: WYSIWYG fast, collaborative page builder
+
+wordpress templates combine a lot of elements into a single product. This is a little more customizable.
+
+html template
+Stylesheet set (colors, spacing, bg graphics, modals)
+photo set
+graphic set
+text set
+
+Emoji overlay annotations for guests. Only show when mouse is being held down or finger is on screen.
+
+custom assets have a copyright overlay until they are purchased, but can be showcased in editor.html or publish.html

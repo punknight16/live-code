@@ -1,0 +1,24 @@
+
+Feature Title
+	command line page creation
+
+Feature Description
+	create an instance of an html page with a single CLI command
+
+Who are the customers for this feature
+	bloggers, authors, and non-technical entrepreneurs
+
+What value will this feature bring to those customers
+	they have a way to display their content
+
+What value will this feature bring to our business
+	hopefully a bit of a wow factor
+
+What are our assumptions
+  1. Some people don't know html
+  2. These people could benefit from html publishing
+  3. These people have money to publish.
+
+What metrics will we measure to gague the success of the feature
+  Positive Feedback (scale 1-5 meaning 4-5).
+  Status
