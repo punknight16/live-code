@@ -12,3 +12,7 @@ Maybe give them two options
 1. solo page with chat bar
 2. create content editable element (display to others in room)
 3. edit content editable element
+
+A. Get it to run on computer (dev branch)
+B. Get it to run on heroku (heroku branch)
+C. Get it to run on Elastic Beanstalk (prod branch)

@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var fs = require('fs');
 
 app.get('/', function(req, res){
 	res.sendFile(__dirname + '/_pages/room.html');
