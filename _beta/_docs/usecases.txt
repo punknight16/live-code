@@ -1,0 +1,5 @@
+1. Insurance sales (licensed insurance broker to payroll company for live quote of workers comp)
+2. 3d modeling (collaborative design with "smart" UI components)
+3. Dungeons and Dragons MUD builder/play through with AI dungeon builder
+4. Triage log, status, and communication during system outages for software developers
+5. Colloborative website building between technical and non-technical users

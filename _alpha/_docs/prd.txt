@@ -1,0 +1,21 @@
+--Features--
+Instant Message
+Voice Chat
+Live Editing of Content
+Screen Sharing
+access User Folder Content management system through external API
+access working dashboard of views, registrations, and sales through external API
+Create CMS API in StudioPlur
+Create Analytics API in Heartlytica
+
+--Pages--
+
+landing.html
+blog.html
+feedback.html
+
+entry.html
+lobby.html
+room.html
+
+dashboard.html

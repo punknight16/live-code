@@ -1,0 +1,9 @@
+milestone 1 - simple demo website (frontend only)
+
+milestone 2 - chat functionality and live editing working
+
+milestone 3 - StudioPlur CMS and Heartlytica integrated
+
+milestone 4 - audio, screenshare, and live video
+
+milestone 5 - speciation for usecases
