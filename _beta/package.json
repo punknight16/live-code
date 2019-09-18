@@ -1,0 +1,9 @@
+{
+  "name": "live-code",
+  "version": "0.0.2",
+  "description": "Minimalist multiroom chat server",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.2.0"
+  }
+}
