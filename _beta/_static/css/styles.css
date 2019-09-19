@@ -1,0 +1,14 @@
+.responsive-only {
+	display: none;
+	visibility: hidden;
+}
+
+.btn {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 16px;
+	border: none;
+	border-radius: 4px;
+	padding: 7px 6px 6px 6px;
+	background-color: pink;
+	box-shadow: 2px 2px 2px gray;
+}

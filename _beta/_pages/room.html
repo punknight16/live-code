@@ -6,6 +6,10 @@
 		  crossorigin="anonymous"></script>
 		<script src='../_static/build/socket.io.js' type='text/javascript'></script>
 		<link rel="stylesheet" type="text/css" href="../_static/css/room.css">
+		<link rel="stylesheet" type="text/css" href="../_static/css/styles.css">
+		<link rel="stylesheet" type="text/css" href="../_static/css/room.css">
+		<link rel="stylesheet" type="text/css" href="../_static/css/room-responsive.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
 		<main id='main'>
@@ -16,6 +20,7 @@
 		</div>
 		<form id='chatForm' autocomplete="off">
 			<input id='chatInput' class='chat-bar-position chat-input-style' type='text' size='40' placeholder="chat" />
+			<input type='submit' class='responsive-only btn chat-btn-position' value='Send' />
 		</form>
 		<script src="../_static/js/room.js"></script>
 	</body>
