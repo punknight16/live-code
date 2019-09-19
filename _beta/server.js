@@ -15,6 +15,10 @@ io.on('connection', function(socket){
 		//console.log('message received: ', msg);
     io.emit('chat message', msg);
   });
+  socket.on('disconnect', function(){
+  	console.log('client disconnected')
+  	io.emit('chat message', 'client disconnected');
+  });
 });
 
 http.listen(process.env.PORT || 3000, function(){
