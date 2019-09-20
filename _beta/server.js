@@ -21,6 +21,11 @@ io.on('connection', function(socket){
 		currentSnapshot.m.push(msg);
     io.emit('chat message', msg);
   });
+
+  socket.on('section edit', function(edit){
+  	io.emit('section edit', edit);
+  });
+  
   socket.on('disconnect', function(){
   	console.log('client disconnected')
   	io.emit('chat message', 'client disconnected');
