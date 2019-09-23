@@ -3,15 +3,10 @@ $(function(){
 	var sections = document.getElementsByTagName("section");
 	for (var i = 0; i < sections.length; i++) {
 		sections[i].addEventListener("input", function(e) {
+			//save cursor
 			var focus_value = window.getSelection().focusNode.nodeValue;
 			AppContext.cursor_saved = savePosition(e.target, focus_value);
-			/*
-			//get Offset of user editing
-			AppContext.sel = window.getSelection();
-			//AppContext.cursor_offset = sel.anchorOffset;
-			AppContext.cursor_saved = savePosition(AppContext.sel);
-			console.log("AppContext.cursor_saved: ", AppContext.cursor_saved[0]);
-			*/
+			
 			//now emit
 	    var section_id = $(e.path[0]).attr('id');
 	    var html = $(e.path[0]).html();
@@ -21,25 +16,18 @@ $(function(){
 	};
 
 	AppContext.socket.on('section edit', function(edit){
+		//add html
+		AppContext.counter = 0;
 		var section_edit = JSON.parse(edit);
 		var section_id = '#'+section_edit.section_id;
 		var section_html = section_edit.html;
 		$(section_id).html(section_html);
+		//now reset cursor element
 		//if you are focused on the edited element, reset to your cursor_offset
 		var cursor_id = $(getSelectionStart()).attr('id');
 		if(cursor_id === section_edit.section_id){
 			//console.log('add range here');
 			restorePosition(AppContext.cursor_saved, cursor_id);
-			/*
-			var el = document.getElementById(cursor_id);
-			var range = document.createRange();
-			var sel = window.getSelection();
-			//console.log('el.childNodes: ', el.childNodes);
-			range.setStart(AppContext.cursor_saved[0], AppContext.cursor_offset);
-			range.collapse(true);
-			sel.removeAllRanges();
-			sel.addRange(range);
-			*/
 		}
 		
 	});
@@ -53,16 +41,7 @@ function savePosition(target_node, focus_value) {
 	AppContext.cursor_obj = buildSave(target_node, focus_value);
 	result = [null, window.getSelection().focusOffset];
 	//console.log('cursor_obj: ', AppContext.cursor_obj);
-	/*
-		var section_child = $(this).text();
-		var selection_node = window.getSelection().focusNode.nodeValue;
-		if(section_child == selection_node){
-			console.log('index: ', index);
-			result = [target_node, index, window.getSelection().focusOffset ];
-		}
-		//var test = this.isEqualNode(window.getSelection().focusNode)
-		//console.log('test: ', test);
-	});*/
+	console.log("AppContext.cursor_obj: ", AppContext.cursor_obj);
 	return result;
   
 }
@@ -71,9 +50,18 @@ function buildSave(target_node, focus_value){
 	
 	var cursor_obj = {};
 	var array = [ ...target_node.childNodes ];
+
+	if(focus_value==null){
+		//set the cursor to end
+		
+		return cursor_obj;
+
+	}
 	
 	var test_index = array.findIndex((el)=>{return (el.nodeValue == focus_value)});
 	if(test_index !== -1){
+		//could be at the beginning or the end here
+		console.log('focus_value: ', focus_value);
 		cursor_obj['childNodes'] = test_index;
 		return cursor_obj;
 	} 
@@ -87,10 +75,14 @@ function buildSave(target_node, focus_value){
 }
 
 function buildRestore(el, cursor_obj, root_el, root_cursor_obj){
-	console.log('el: ', el);
-	console.log('cursor_obj: ', cursor_obj);
-	console.log('root_el: ', root_el);
-	console.log('root_cursor_obj: ', root_cursor_obj);
+	if(AppContext.counter > 100){
+		return
+	}
+	AppContext.counter++;
+	//console.log('el: ', el);
+	//console.log('cursor_obj: ', cursor_obj);
+	//console.log('root_el: ', root_el);
+	//console.log('root_cursor_obj: ', root_cursor_obj);
 	
 	
 	//console.log('typeof cursor_obj.childNodes: ', typeof cursor_obj.childNodes);
