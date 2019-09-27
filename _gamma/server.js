@@ -17,7 +17,7 @@ app.use('/_static', express.static('_static'));
 io.on('connection', function(socket){
 	console.log('client connected');
 	socket.on('/pull DOM', function(){
-		io.emit('DOM', dom_table);
+		socket.emit('DOM', dom_table);
 	})
   
   socket.on('disconnect', function(){
