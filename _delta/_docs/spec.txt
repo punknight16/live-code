@@ -1,0 +1,7 @@
+we are just going to build a few functions, and then hook it up to EBS
+
+1. /pull <file> (done)
+2. /push <file> (done)
+3. /fetch <website> (I think I will use puppeteer for this)
+4. /get <chatlog> (done-ish)
+5. /add <chatlog> (done-ish)

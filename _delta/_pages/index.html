@@ -1,0 +1,25 @@
+<html>
+<head>
+	<link rel="icon" 
+      type="image/png" 
+      href="./_static/imgs/lp-icon.png">
+  <title>Live Pages</title>
+	<script
+		  src="https://code.jquery.com/jquery-3.4.1.js"
+		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		  crossorigin="anonymous"></script>
+	<script src='../_static/socket.io.js' type='text/javascript'></script>
+</head>
+<body>
+	<main id='main'>
+	</main>
+	<script>
+		var AppContext = {};
+		AppContext.socket = io();
+		AppContext.socket.emit('/cmd <param>', {data: 'hi'});
+		AppContext.socket.on('msg', function(msg){
+			console.log('msg: ', msg);
+		});
+	</script>
+</body>
+</html>

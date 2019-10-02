@@ -1,0 +1,33 @@
+<html>
+<head>
+	<script
+	  src="https://code.jquery.com/jquery-3.4.1.js"
+	  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	  crossorigin="anonymous"></script>
+</head>
+<body>
+	<main>
+		<h1>ChatLog Input</h1>
+		<textarea id='chatLogTextArea'></textarea>
+		<button id='chatLogButton'>Submit</button>
+	</main>
+	<script>
+		$('#chatLogButton').on('click', function(e){
+			var chatLogTextArea = $('#chatLogTextArea').val();
+			var chat_arr = chatLogTextArea.split(/\r*\n/);
+			goRoom(chat_arr);
+		});
+		function goRoom(chat_arr){
+		  var form = document.createElement("form");
+		  var element1 = document.createElement("input");
+		  form.method = "GET";
+		  form.action = "./room.html";
+		  element1.value=JSON.stringify(chat_arr);
+		  element1.name="m";
+		  form.appendChild(element1); 
+		  document.body.appendChild(form);
+		  form.submit();
+		}
+	</script>
+</body>
+</html>

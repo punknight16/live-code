@@ -1,0 +1,23 @@
+1. add an "a" to where the cursor is, and place the cursor after it.
+
+-->get where the cursor is
+-->place an 'a' after it
+-->place the cursor after the a
+
+
+where the cursor is:
+
+each section has root id, so we find the section_id, and create a json tag model
+
+dom_map = [
+	{ 
+		tagname: 'SECTION', html: {
+			tagname: 'P', text: 'Hello world!'
+		}
+	}
+]
+dom_caret = [0, 15]
+
+first position tells you what node in a depth or breadth first search
+seccond position tells you what offset
+

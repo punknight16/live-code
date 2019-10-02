@@ -2,4 +2,34 @@
 2. 3d modeling (collaborative design with "smart" UI components)
 3. Dungeons and Dragons MUD builder/play through with AI dungeon builder
 4. Triage log, status, and communication during system outages for software developers
+
 5. Colloborative website building between technical and non-technical users
+6. Use case - find a main page, and then send a link with a chatoverlay on the main page, agnostic to whether person A can edit with person B.
+
+
+
+Delegate out, keeping in contact
+
+Sign now, docusign, api
+
+dump in the link, and see the docusign document
+
+Did he buy the business or start it?
+
+4 iterations by end of October,
+
+probably not enough time, foolish
+
+Someone who isn't you, and someone who isn't me to could be use by.
+
+chat, and past a link.
+
+sell the shit out of a main page, and then send a link with a chatoverlay
+
+
+ycombinator, techstars, apply to ycombinator
+
+
+
+
+>>>>>>> dev
