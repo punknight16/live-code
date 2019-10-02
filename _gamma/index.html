@@ -11,12 +11,18 @@
 		<section id='first_section' contenteditable>
 			<p class='test'>Hello</p>
 		</section>
-		<button onclick="myfunction()">click</button>
+		<!--<button onclick="myfunction()">click</button>-->
+		<!--find functions in bootstrap-dom.js-->
 	</main>
 	<script>
 		var AppContext = {};
 		AppContext.socket = io();
+		AppContext.counter = 0;
 	</script>
+	<script src="./_static/start-editor.js"></script>
 	<script src="./_static/editor-ui.js"></script>
+	<script>
+		console.log('AppContext: ', AppContext);
+	</script>
 </body>
 </html>

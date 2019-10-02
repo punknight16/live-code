@@ -19,6 +19,10 @@ io.on('connection', function(socket){
 	socket.on('/pull DOM', function(){
 		socket.emit('DOM', dom_table);
 	})
+
+	socket.on('/insert DOM', function(){
+		socket.emit('ROW', 'new row');
+	});
   
   socket.on('disconnect', function(){
   	console.log('client disconnected')
