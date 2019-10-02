@@ -13,5 +13,13 @@
 <body>
 	<main id='main'>
 	</main>
+	<script>
+		var AppContext = {};
+		AppContext.socket = io();
+		AppContext.socket.emit('/cmd <param>', {data: 'hi'});
+		AppContext.socket.on('msg', function(msg){
+			console.log('msg: ', msg);
+		});
+	</script>
 </body>
 </html>
