@@ -18,7 +18,7 @@
 		AppContext.socket = io();
 		AppContext.socket.emit('/cmd <param>', {data: 'hi'});
 		AppContext.socket.on('msg', function(msg){
-			console.log('msg: ', msg);
+			console.log('echo: ', msg);
 		});
 	</script>
 </body>
