@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var fs = require('fs');
 var staticRouter = require('./_lib/static-routes');
 var socketRouter = require('./_lib/socket-routes');
 
