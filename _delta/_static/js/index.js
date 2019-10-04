@@ -1,6 +1,6 @@
 var AppContext = {};
 AppContext.socket = io();
-AppContext.socket.emit('/pull hello.json', {data: 'hi'});
+AppContext.socket.emit('/pull goodbye.json', {data: 'hi'});
 //create universal character
 var onevent = AppContext.socket.onevent;
 AppContext.socket.onevent = function (packet) {
