@@ -1,6 +1,8 @@
 var AppContext = {};
 AppContext.socket = io();
+//test cases
 AppContext.socket.emit('/pull goodbye.json', {data: 'hi'});
+AppContext.socket.emit('/push test.json', {data: 'hi'});
 //create universal character
 var onevent = AppContext.socket.onevent;
 AppContext.socket.onevent = function (packet) {
@@ -14,5 +16,5 @@ AppContext.socket.on("*",function(cmd,data) {
 	//client socket router
   console.log('cmd: ', cmd);
   console.log('data: ', data);
-  socketRouter(AppContext, cmd, data)
+  inboundRouter(AppContext, cmd, data)
 });

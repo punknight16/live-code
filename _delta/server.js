@@ -28,7 +28,7 @@ io.on('connection', function(socket){
 	};
 
 	socket.on("*",function(cmd,data) {
-	  socketRouter(socket, cmd, data);
+	  socketRouter(socket, cmd, data, io);
 	});
   
   socket.on('disconnect', function(){
