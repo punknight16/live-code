@@ -1,4 +1,4 @@
-function socketRouter(AppContext, cmd, data){
+/*function socketRouter(AppContext, cmd, data){
 	if(cmd.substring(0, 1) == '/'){
 		var cmd_arr = cmd.split(' ');
 		switch(cmd_arr[0]){
@@ -13,4 +13,4 @@ function socketRouter(AppContext, cmd, data){
 	} else {
 		console.log('msg: ', cmd);
 	}
-}
+}*/

@@ -4,9 +4,8 @@ $(function () {
   
   $('#chatForm').submit(function(e){
   	e.preventDefault();
-    AppContext.socket.emit($('#chatInput').val());
-    //socketRouter(AppContext, $('#chatInput').val());
-    $('#chatInput').val('');
+    outboundRouter(AppContext, $('#chatInput').val());
+    $('#chatInput').val('');  
   });
   //handle output
   AppContext.socket.on('msg', function(msg){
