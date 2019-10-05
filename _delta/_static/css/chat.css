@@ -1,0 +1,102 @@
+* {
+	margin: 0;	
+	padding: 0;
+}
+textarea,
+input.text,
+input[type="file"],
+input[type="text"],
+input[type="password"],
+input[type="button"],
+input[type="submit"] {
+	-webkit-appearance: none;
+	border: 1px solid #cccccc;
+	cursor: pointer;
+}
+
+
+.responsive-only {
+	display: none;
+	visibility: hidden;
+}
+
+.btn {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 16px;
+	border: none;
+	border-radius: 4px;
+	padding: 4px 6px 4px 6px;
+	background-color: pink;
+	box-shadow: 2px 2px 2px gray;
+}
+.chat-bar-position {
+	position: fixed;
+	bottom: 40px;
+	left: 100px;
+}
+
+.chat-log-position {
+	position: fixed;
+	bottom: 80px;
+	left: 100px;
+}
+
+.chat-input-style {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 16px;
+	line-height: 1.8;
+	border: 1px solid gray;
+	border-radius: 4px;
+	padding-left: 6px;
+	padding-right: 6px;
+}
+.chat-output-style {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 16px;
+	line-height: 1.5;
+	padding-left: 6px;
+	padding-right: 6px;
+	opacity: 1;
+}
+@media screen and (max-width: 600px) {
+	.chat-bar-position {
+		position: fixed;
+		bottom: 40px;
+		left: 20px;
+	}
+
+	.chat-log-position {
+		position: fixed;
+		bottom: 80px;
+		left: 20px;
+	}
+
+	.chat-btn-position {
+		position: fixed;
+		bottom: 42px;
+		right: 20px;
+	}
+
+	.chat-input-style {
+		font-family: "Courier New", Courier, monospace;
+		font-size: 16px;
+		line-height: 1.8;
+		border: 1px solid gray;
+		border-radius: 4px;
+		padding-left: 6px;
+		padding-right: 6px;
+		width: 270px;
+	}
+	.chat-output-style {
+		font-family: "Courier New", Courier, monospace;
+		font-size: 16px;
+		line-height: 1.5;
+		padding-left: 6px;
+		padding-right: 6px;
+		opacity: 1;
+	}
+	.responsive-only {
+		display: block;
+		visibility: visible;
+	}
+}

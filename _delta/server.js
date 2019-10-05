@@ -2,14 +2,21 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+
 var fs = require('fs');
 
+
+var staticRouter = require('./_lib/static-routes');
+var socketRouter = require('./_lib/socket-routes');
+
 //router
-app.get('/', function(req, res){
-	res.sendFile(__dirname + '/_pages/index.html');
-});
+
 
 app.use('/_static', express.static('_static'));
+
+app.get('*', function(req, res){
+	staticRouter(req, res)
+});
 
 //socket.io stuff with a wildcard
 
@@ -24,16 +31,19 @@ io.on('connection', function(socket){
 	    packet.data = ["*"].concat(args);
 	    onevent.call(this, packet);      // additional call to catch-all
 	};
-	socket.on("*",function(event,data) {
-	  console.log(event);
-	  console.log(data);
-	  socket.emit('msg', data);
+
+	
+
+	socket.on("*",function(cmd,data) {
+	  socketRouter(socket, cmd, data, io);
+
 	});
   
   socket.on('disconnect', function(){
   	console.log('client disconnected')
   });
 });
+
 
 //listen!
 http.listen(process.env.PORT || 3000, function(){
