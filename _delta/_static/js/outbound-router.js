@@ -11,6 +11,8 @@ function outboundRouter(AppContext, cmd){
 				console.log('/pull fired');
 				AppContext.socket.emit(cmd);
 				break;
+			case '/darkmode':
+				toggleChatDarkmode();
 			default:
 				console.log('cmd not found: ', cmd);
 		}	

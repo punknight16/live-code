@@ -58,6 +58,18 @@ input[type="submit"] {
 	padding-right: 6px;
 	opacity: 1;
 }
+/*darkmode bitches*/
+.chat-input-darkmode {
+	opacity: .8;
+	background: black;
+	color: white;
+}
+.chat-log-darkmode {
+	opacity: .8;
+	background: black;
+	color: white;
+}
+/*end darkmode*/
 @media screen and (max-width: 600px) {
 	.chat-bar-position {
 		position: fixed;
