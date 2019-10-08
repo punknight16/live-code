@@ -1,7 +1,7 @@
 function outboundRouter(AppContext, cmd){
 	if(cmd.substring(0, 1) == '/'){
 		//var cmd_arr = cmd.split(' ');
-		var cmd_arr = cmd.match(/(?:[^\s"]+|"[^"]*")+/g);
+		var cmd_arr = cmd.match(/(?:[^\s']+|'[^']*')+/g);
 		//console.log('cmd_arr: ', cmd_arr);
 		
 		switch(cmd_arr[0]){
@@ -22,7 +22,7 @@ function outboundRouter(AppContext, cmd){
 				if(cmd_arr[1]){
 					editDOM(cmd_arr[1], cmd_arr[2], AppContext);	
 				} else {
-					chatError('<need arguments "/row --flag [data] "');
+					chatError('<need arguments "/row --flag [row] "');
 				}
 				break;
 			default:
