@@ -11,10 +11,13 @@
 	<script src='../_static/build/socket.io.js' type='text/javascript'></script>
 	<script src='../_static/js/pull-dom.js' type='text/javascript'></script>
 	<script src='../_static/js/push-dom.js' type='text/javascript'></script>
+	<script src='../_static/js/edit-dom.js' type='text/javascript'></script>
+	<script src='../_static/js/dom-listener.js' type='text/javascript'></script>
 	<script src='../_static/js/inbound-router.js' type='text/javascript'></script>
 	<script src='../_static/js/outbound-router.js' type='text/javascript'></script>
 	<script src='../_static/js/chat-ui.js' type='text/javascript'></script>
 	<link rel="stylesheet" type="text/css" href="../_static/css/chat.css">
+	<link rel="stylesheet" type="text/css" href="../_static/css/modal.css">
 </head>
 <body>
 	<main id='main'></main>
@@ -25,6 +28,16 @@
 		<input id='chatInput' class='chat-bar-position chat-input-style' type='text' size='40' placeholder="chat" />
 		<input type='submit' class='responsive-only btn chat-btn-position' value='Send' />
 	</form>
+
+	<div id="modal-background" class="modal">
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <span class="close">&times;</span>
+	    <div id='modal-body'></div>
+	  </div>
+	</div>
+
 	<script src='../_static/js/index.js' type='text/javascript'></script>
+	<script src='../_static/js/modal.js' type='text/javascript'></script>
 </body>
 </html>
