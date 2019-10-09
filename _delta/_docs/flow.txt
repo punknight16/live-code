@@ -13,8 +13,10 @@
 7. server adds row to single-source-of-truth dom
 8. server sends row to connected clients other than sender
 
----------------- Server Break ------------- (DONE!)
+---------------- Server Break ------------- 
 
 9. Clients receive row
 10. Clients add row to client-dom-table
 11. client renders new row
+
+--------------- Client Break ----------- (DONE!)

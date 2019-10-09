@@ -4,6 +4,10 @@ function socketRouter(socket, cmd, data, io){
 	if(cmd.substring(0, 1) == '/'){
 		var cmd_arr = cmd.split(' ');
 		switch(cmd_arr[0]){
+			case '/row':
+				console.log('/row fired');
+				socket.broadcast.emit(cmd);
+				break;
 			case '/pull':
 				console.log('/pull fired')
 				pullDOM(socket, cmd_arr[1]);

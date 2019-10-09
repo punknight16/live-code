@@ -20,9 +20,10 @@ function outboundRouter(AppContext, cmd){
 			case '/row':
 				console.log('AppContext.dom_map: ', AppContext.dom_map);
 				if(cmd_arr[1]){
+					AppContext.socket.emit(cmd);
 					editDOM(cmd_arr[1], cmd_arr[2], AppContext);	
 				} else {
-					chatError('<need arguments "/row --flag [row] "');
+					chatError('<need arguments "/row --flag [row_data] "');
 				}
 				break;
 			default:
