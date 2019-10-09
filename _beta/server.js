@@ -3,7 +3,6 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-
 var currentSnapshot = {
 	m: ['hello world!', 'this should work!']
 };

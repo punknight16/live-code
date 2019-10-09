@@ -3,7 +3,9 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+
 var fs = require('fs');
+
 
 
 var staticRouter = require('./_lib/static-routes');
@@ -32,7 +34,9 @@ io.on('connection', function(socket){
 	    onevent.call(this, packet);      // additional call to catch-all
 	};
 
+
 	
+
 
 	socket.on("*",function(cmd,data) {
 	  socketRouter(socket, cmd, data, io);
@@ -43,6 +47,7 @@ io.on('connection', function(socket){
   	console.log('client disconnected')
   });
 });
+
 
 
 //listen!

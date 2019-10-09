@@ -1,15 +1,18 @@
 {
+
   "private": true,
   "name": "live-code_delta",
-  "version": "0.0.4",
+  "version": "0.0.5",
 
   "description": "Minimalist chat server and dom editing",
   "dependencies": {
     "express": "^4.17.1",
     "socket.io": "^2.2.0"
 
+
   },
   "scripts": {
     "start": "node server.js"
+
   }
 }

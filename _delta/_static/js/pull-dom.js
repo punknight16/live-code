@@ -13,8 +13,10 @@ function pullDOM(dom_map){
 			if(node.parent == null){
 				//new code for tracking actions
 				$node.attr('contenteditable', true);
+
 					//$node.on("selectstart", handleSelectStart);
 					//$node.on("input", handleInput);
+
 				//end new code
 				$('#main').append($node);	
 			} else {

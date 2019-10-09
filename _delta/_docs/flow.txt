@@ -1,0 +1,22 @@
+1. user clicks on content editable section
+2. user presses enter
+3. user pastes button <button>Submit</button>
+
+-------------------DOMListener Break----------
+
+4. CLI creates a Button Row
+5. CLI sends Button Row to server
+
+---------------- CLI Break --------------
+
+6. Server receives new row
+7. server adds row to single-source-of-truth dom
+8. server sends row to connected clients other than sender
+
+---------------- Server Break ------------- 
+
+9. Clients receive row
+10. Clients add row to client-dom-table
+11. client renders new row
+
+--------------- Client Break ----------- (DONE!)

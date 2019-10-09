@@ -1,6 +1,8 @@
 var AppContext = {};
+
 //AppContext.socket = io(window.location.href, {transports: ['websocket']});
 AppContext.socket = io();
+
 //test cases
 AppContext.socket.emit('/pull goodbye.json', {data: 'hi'});
 AppContext.socket.emit('/push test.json', {data: 'hi'});
