@@ -1,0 +1,11 @@
+[{"id":0,"tagname":"SECTION","parent":null,"order":0},
+{"id":1,"tagname":"P","parent":0,"order":0},
+{"id":2,"tagname":"TEXT","parent":1,"order":0,"text":"I’ve been reading, "},
+{"id":3,"tagname":"EM","parent":1,"order":1},
+{"id":4,"tagname":"TEXT","parent":3,"order":0,"text":"Valley of Genius"},
+{"id":5,"tagname":"TEXT","parent":1,"order":2,"text":" "},
+{"id":6,"tagname":"TEXT","parent":1,"order":3,"text":"by Adam Fisher. The book chronicles the history of Silicon Valley, starting with the “big bang” or “mother of all demos”. In this demo, Doug Engelbart invented the mouse, the graphic user interface, and an early version of"},
+{"id":7,"tagname":"TEXT","parent":1,"order":4,"text":" "},
+{"id":8,"tagname":"A","parent":1,"order":5},
+{"id":9,"tagname":"TEXT","parent":8,"order":0,"text":"http"},
+{"id":10,"tagname":"TEXT","parent":1,"order":6,"text":". Fisher continues the journey with a description of Nolan Bushnell and how he started an amazing video game company (Atari). Nolan sold the company to Warner Communications, which eventually led to its downfall. The company tanked after losing their four most talented employees, who went on to create Activision. I’m currently at the part of the book where Apple is on the rise. Steve Jobs is generally being an asshole or visionary depending on your point of view. He lead a team to build their second benchmark product after the Apple II. Spoiler, it was the Mac."}]

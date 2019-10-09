@@ -1,0 +1,6 @@
+Whenver a user hits enter while focused on the editor, we need to add a new row to the DOM_table
+
+
+BUT...
+
+Depending on where enter is hit, old rows need to be edited, so I think it might be easier to finish edit, and delete before going on to editing the dom.
