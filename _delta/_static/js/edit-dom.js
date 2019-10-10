@@ -1,6 +1,7 @@
 function editDOM(flag, data, AppContext){
 	//test case /row --add '[{"id":6,"tagname":"BUTTON","parent":0,"order":3},{"id":7,"tagname":"TEXT","parent":6,"order":0,"text":"HI"}]'
 	//test case /row --edit '[{"id":7,"tagname":"TEXT","parent":6,"order":0,"text":"SUBMIT"}]'
+	//test case /row --destroy '[{"id":7,"tagname":"TEXT","parent":6,"order":0,"text":"SUBMIT"}]'
 	console.log('editDOM fired');
 	switch(flag){
 		case '--list':
@@ -20,8 +21,28 @@ function editDOM(flag, data, AppContext){
 				editRow(row);
 			});
 			break;
+		case '--destroy':
+			console.log('destroy');
+			var row_arr = JSON.parse(data.substring(1, data.length-1));
+			row_arr.map((row, index)=>{
+				destroyRow(row);
+			}); 
+			break;
+		default:
+			console.log('flag not found');
 	}
 }
+
+function destroyRow(node){
+	var found_row = AppContext.dom_map.find((row)=>{
+		return (row.id == node.id)
+	});
+	if(found_row == undefined){
+		throw 'node_id does not exist';
+	}
+	found_row.model.parentNode.removeChild(found_row.model);
+}
+
 
 function editRow(node){
 	//console.log('edit Row fired!');
