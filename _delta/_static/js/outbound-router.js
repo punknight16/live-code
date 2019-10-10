@@ -6,22 +6,22 @@ function outboundRouter(AppContext, cmd){
 		
 		switch(cmd_arr[0]){
 			case '/push':
-				console.log('/push fired')
+				
 				var data = pushDOM(cmd[1]);
 				AppContext.socket.emit(cmd, data);
 				break;
 			case '/pull':
-				console.log('/pull fired');
+				
 				AppContext.socket.emit(cmd);
 				break;
 			case '/darkmode':
 				toggleChatDarkmode();
 				break;
 			case '/row':
-				console.log('AppContext.dom_map: ', AppContext.dom_map);
 				if(cmd_arr[1]){
 					AppContext.socket.emit(cmd);
-					editDOM(cmd_arr[1], cmd_arr[2], AppContext);	
+					editDOM(cmd_arr[1], cmd_arr[2], AppContext);
+					setCaretPos($('#node5')); //need to set caret position to last node created
 				} else {
 					chatError('<need arguments "/row --flag [row_data] "');
 				}

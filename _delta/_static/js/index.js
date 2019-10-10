@@ -14,7 +14,7 @@ AppContext.socket.onevent = function (packet) {
 
 AppContext.socket.on("*",function(cmd,data) {
 	//client socket router
-  console.log('cmd: ', cmd);
-  console.log('data: ', data);
+  //console.log('cmd: ', cmd);
+  //console.log('data: ', data);
   inboundRouter(AppContext, cmd, data)
 });

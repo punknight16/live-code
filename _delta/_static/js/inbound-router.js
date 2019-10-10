@@ -4,7 +4,6 @@ function inboundRouter(AppContext, cmd, data){
 		var cmd_arr = cmd.match(/(?:[^\s']+|'[^']*')+/g);
 		switch(cmd_arr[0]){
 			case '/pull':
-				console.log('/pull fired')
 				pullDOM(data);
 				break;
 			case '/row':
@@ -15,6 +14,6 @@ function inboundRouter(AppContext, cmd, data){
 			  console.log('echo data: ', data);
 		}	
 	} else {
-		console.log('msg: ', cmd);
+		//console.log('msg: ', cmd);	
 	}
 }

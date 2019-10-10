@@ -2,7 +2,7 @@ function editDOM(flag, data, AppContext){
 	//test case /row --add '[{"id":6,"tagname":"BUTTON","parent":0,"order":3},{"id":7,"tagname":"TEXT","parent":6,"order":0,"text":"HI"}]'
 	//test case /row --edit '[{"id":7,"tagname":"TEXT","parent":6,"order":0,"text":"SUBMIT"}]'
 	//test case /row --destroy '[{"id":6,"tagname":"BUTTON","parent":0,"order":3},{"id":7,"tagname":"TEXT","parent":6,"order":0,"text":"HI"}]'
-	console.log('editDOM fired');
+	
 	switch(flag){
 		case '--list':
 			//show table modal
@@ -22,7 +22,7 @@ function editDOM(flag, data, AppContext){
 			});
 			break;
 		case '--destroy':
-			console.log('destroy');
+			
 			var row_arr = JSON.parse(data.substring(1, data.length-1));
 			row_arr.map((row, index)=>{
 				destroyRow(row);
@@ -31,6 +31,14 @@ function editDOM(flag, data, AppContext){
 		default:
 			console.log('flag not found');
 	}
+}
+
+function setCaretPos(el){
+	var sel = window.getSelection();
+	var range = document.createRange();
+	range.selectNodeContents(el[0]); // Assuming el is a jQuery object
+	sel.removeAllRanges();
+	sel.addRange(range);
 }
 
 function destroyRow(node){
@@ -64,14 +72,15 @@ function addRow(node){
 	if(node.tagname!=='TEXT'){
 		node.model = document.createElement(node.tagname);
 		var $node = $(node.model);
+		//new code for tracking actions
+		
+		$node.on("input", handleInput);
+		//end new code
 		var node_id = 'node'+node.id
 		$node.attr('id', node_id );
 		if(node.parent == null){
-			//new code for tracking actions
 			$node.attr('contenteditable', true);
-			//$node.on("selectstart", domListener);
-			//$node.on("input", handleInput);
-			//end new code
+			$node.one("selectstart", domListener);
 			$('#main').append($node);	
 		} else {
 			var node_id = '#node'+node.parent;

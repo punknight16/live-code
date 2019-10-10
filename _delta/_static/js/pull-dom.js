@@ -8,14 +8,16 @@ function pullDOM(dom_map){
 		if(node.tagname!=='TEXT'){
 			node.model = document.createElement(node.tagname);
 			var $node = $(node.model);
+			//new code for tracking actions
+			$node.on("keypress", handleKeypress);
+			$node.on("input", handleInput);
+			//end new code
 			var node_id = 'node'+node.id
 			$node.attr('id', node_id );
 			if(node.parent == null){
-				//new code for tracking actions
+				
 				$node.attr('contenteditable', true);
-				//$node.on("selectstart", domListener);
-				//$node.on("input", handleInput);
-				//end new code
+				$node.one("selectstart", domListener);
 				$('#main').append($node);	
 			} else {
 				var node_id = '#node'+node.parent;
