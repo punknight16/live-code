@@ -1,7 +1,7 @@
 function editDOM(flag, data, AppContext){
 	//test case /row --add '[{"id":6,"tagname":"BUTTON","parent":0,"order":3},{"id":7,"tagname":"TEXT","parent":6,"order":0,"text":"HI"}]'
 	//test case /row --edit '[{"id":7,"tagname":"TEXT","parent":6,"order":0,"text":"SUBMIT"}]'
-	//test case /row --destroy '[{"id":7,"tagname":"TEXT","parent":6,"order":0,"text":"SUBMIT"}]'
+	//test case /row --destroy '[{"id":6,"tagname":"BUTTON","parent":0,"order":3},{"id":7,"tagname":"TEXT","parent":6,"order":0,"text":"HI"}]'
 	console.log('editDOM fired');
 	switch(flag){
 		case '--list':
