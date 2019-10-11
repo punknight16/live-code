@@ -9,7 +9,7 @@ function pullDOM(dom_map){
 			node.model = document.createElement(node.tagname);
 			var $node = $(node.model);
 			//new code for tracking actions
-			$node.on("keypress", handleKeypress);
+			$node.on("keydown", handleKeypress);
 			$node.on("input", handleInput);
 			//end new code
 			var node_id = 'node'+node.id

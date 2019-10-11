@@ -20,8 +20,9 @@ function outboundRouter(AppContext, cmd){
 			case '/row':
 				if(cmd_arr[1]){
 					AppContext.socket.emit(cmd);
-					editDOM(cmd_arr[1], cmd_arr[2], AppContext);
-					setCaretPos($('#node5')); //need to set caret position to last node created
+					var node_id = editDOM(cmd_arr[1], cmd_arr[2], AppContext);
+					
+					setCaretPos($('#node'+node_id)); //need to set caret position to last node created
 				} else {
 					chatError('<need arguments "/row --flag [row_data] "');
 				}
