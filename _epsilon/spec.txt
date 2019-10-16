@@ -1,0 +1,6 @@
+1. create the dom_map and render
+2. watch for changes in the dom, 
+	when they happen update the ids,and
+	create a change record,
+	send it
+3. every 5 seconds compare the old dom_map to a new dom_map

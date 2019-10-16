@@ -1,2 +1,0 @@
-1) when the page is not active on your phone, you don't get chat updates - FIXED
-2) when you press enter at the end of a line, it screws things up.

@@ -1,0 +1,20 @@
+Whenver a user hits enter while focused on the editor, we need to add a new row to the DOM_table
+
+
+BUT...
+
+Depending on where enter is hit, old rows need to be edited, so I think it might be easier to finish edit, and delete before going on to editing the dom.
+
+user hits enter in the center of a text node,
+
+makes a copy of the the text node, and the parent node,
+
+copy A is edited to have the text to the left of the cursor
+copy B is new and has the text after the cursor
+
+
+OK THIS IS ALL DONE BUT....
+
+
+I need to spend some time figuring out the order and parent for each cmd
+AND work on left text

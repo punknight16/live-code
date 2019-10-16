@@ -1,0 +1,22 @@
+we are just going to build a few functions, and then hook it up to EBS
+
+1. /pull <file> (done)
+2. /push <file> (done)
+3. /fetch <website> (I think I will use puppeteer for this)
+4. /get <chatlog> (done-ish)
+5. /add <chatlog> (done-ish)
+
+
+Week starting October 7, 2019
+
+1. get some sort of live editing working
+	aa. show dom_table -done
+	a. pass the command from the command line to server
+		i. add row
+		ii. delete row
+		iii. edit row
+	b. pass the edit from the page to the command-line
+	c. pass from server to other clients
+2. maybe do the login, s3 private storage stuff
+
+[have some sort of mem object for parent node]
