@@ -1,0 +1,196 @@
+<html>
+	<head>
+		<script
+		  src="https://code.jquery.com/jquery-3.4.1.js"
+		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		  crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<main id='main'>
+			
+		</main>
+		<script>
+			var AppContext = {
+				"dom_map": [
+					{"id":0,"tagname":"SECTION","parent":null,"order":0, "timestamp":0},
+					{"id":1,"tagname":"P","parent":0,"order":1, "timestamp":0},
+					{"id":2,"tagname":"TEXT","parent":1,"order":0,"text":"Hello World!", "timestamp":0}
+				],
+				"timestamp": 0
+			};
+			AppContext.dom_map.map((row, index)=>{
+				addRow(row, AppContext)
+			});
+			var test = setInterval(function(){
+				AppContext.timestamp = AppContext.timestamp+5;
+				AppContext.caret_selection = getCaretSelection();
+				console.log("AppContext.caret_selection: ", AppContext.caret_selection);
+				var dom_map = buildDomMap(AppContext);
+				AppContext.dom_map = mergeDomMaps(AppContext.dom_map, dom_map);
+				$('#main').empty();
+				AppContext.dom_map.map((row, index)=>{
+					addRow(row, AppContext)
+				});
+				
+				//clearInterval(test);
+				/*
+				var node = document.querySelector("P");
+				console.log('node: ', node);
+				node.focus();
+				//var textNode = node.firstChild;
+				
+				
+				var textNode = AppContext.dom_map[2].model;
+				
+				console.log('textNode: ', textNode);
+				var caret = 1; // insert caret after the 10th character say
+				var range = document.createRange();
+				range.setStart(textNode, caret);
+				range.setEnd(textNode, caret);
+				var sel = window.getSelection();
+				sel.removeAllRanges();
+				sel.addRange(range);
+				*/
+			}, 5000);
+
+			function setCaretPos(textNode, caret){
+				// insert caret after the 10th character say
+				var range = document.createRange();
+				range.setStart(textNode, caret);
+				range.setEnd(textNode, caret);
+				var sel = window.getSelection();
+				sel.removeAllRanges();
+				sel.addRange(range);
+				
+			}
+
+			function getCaretSelection(){
+				var caret_selection = {};
+				caret_selection.anchor_node = document.getSelection().anchorNode;
+				caret_selection.anchor_row = getRow(caret_selection.anchor_node);
+				caret_selection.anchor_offset = window.getSelection().anchorOffset;
+				caret_selection.focus_node = document.getSelection().focusNode;
+				caret_selection.focus_offset = window.getSelection().focusOffset;
+				if(caret_selection.anchor_offset>caret_selection.focus_offset){
+					var mem = caret_selection.anchor_offset;
+					caret_selection.anchor_offset = caret_selection.focus_offset;
+					caret_selection.focus_offset = mem;
+				}
+				//console.log('caret_selection: ', caret_selection);
+				return caret_selection
+			}
+
+			function getRow(node){
+				return AppContext.dom_map.find((dom_row)=>{
+					return (node.isSameNode(dom_row.model));
+				});
+			}
+
+			function addRow(node, AppContext){
+				if(node.tagname!=='TEXT'){
+					node.model = document.createElement(node.tagname);
+					var $node = $(node.model);
+					var node_id = 'node'+node.id
+					$node.attr('id', node_id );
+					if(node.parent == null){
+						$node.attr('contenteditable', true);
+						//$node.on("mousedown mouseup keydown keyup", update);
+						$('#main').append($node);	
+					} else {
+						var node_id = '#node'+node.parent;
+						$(node_id).append($node);
+					}
+					
+				} else {
+					if(JSON.stringify(node.text).match(/\\/));
+					else {
+						var node_parent = '#node'+node.parent;
+						var checkExist = setInterval(function() {
+					   if ($(node_parent).length) {
+					   		node.model = document.createTextNode(node.text);
+					      $(node_parent).append(node.model);
+
+					      if(AppContext.caret_selection !== undefined && AppContext.caret_selection.anchor_node){
+					      	console.log(`hereA: ${node.id}`);
+					      	console.log('dom_map: ', AppContext.dom_map);
+					      	if(AppContext.caret_selection.anchor_id == node.id){
+					      		console.log('hereB');
+					      		setCaretPos(node.model, AppContext.caret_selection.anchor_offset);	
+					      	}	
+					      }
+					      
+					      clearInterval(checkExist);
+					      
+					   }
+						}, 100);
+					}
+				}
+			}
+			function buildDomMap(AppContext){
+				var sections = [...document.getElementsByTagName('SECTION')];
+				
+				var json_doc = [];
+				sections.map((section, index)=>{
+					var id = json_doc.length;
+					json_doc.push({id: id, tagname: 'SECTION', parent: null, order: index, model: section, timestamp: AppContext.timestamp});
+					if(section.childNodes.length>0){
+						crawlNode(section, id, json_doc);
+					}
+				});
+				return json_doc;		
+			}
+
+			function crawlNode(target_node, parent_id, json_doc){
+				var array = [ ...target_node.childNodes ];
+				
+				array.map((node, index)=>{
+					if(node.nodeType == 3){
+						//what do if text node?
+						//if(JSON.stringify(node.nodeValue).match(/\\/));
+						//json_doc[parent_id].text = node.nodeValue;
+						var id = json_doc.length;
+						json_doc.push({id: id, tagname: 'TEXT', parent: parent_id, order: index, text: node.nodeValue, model: node, timestamp: AppContext.timestamp});
+					} else {
+						var id = json_doc.length;
+						json_doc.push({id: id, tagname: node.tagName, parent: parent_id, order: index, model: node, timestamp: AppContext.timestamp});
+						if(node.childNodes.length > 0){
+							crawlNode(node, id, json_doc);
+						}	
+					}
+				});
+			}
+
+			function mergeDomMaps(dom_map1, dom_map2){
+				
+				var dom_map3 = dom_map1.concat(dom_map2);
+				var dom_map4 = [];
+				dom_map3.map((row, index)=>{
+					var same_row_index = dom_map4.findIndex((test_row)=>{
+						if(test_row.model){
+							return (test_row.model.isSameNode(row.model))	
+						} else {
+							return false
+						}
+					});
+					
+					var same_row_exists_already = dom_map4[same_row_index];
+					if(same_row_exists_already){
+						//compare the two
+						//create a changelog
+						
+						//insert the one with the later timestamp
+						if(same_row_exists_already.timestamp < row.timestamp){
+							//console.log('row: ', row);
+							//console.log('same_row_exists_already: ', same_row_exists_already);
+							dom_map4.splice(same_row_index, 1,  row);
+						}
+					} else {
+						//console.log('row: ', row);
+						dom_map4.push(row);
+					}
+				})
+				return dom_map4;
+			}
+		</script>
+	</body>
+</html>
