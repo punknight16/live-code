@@ -58,6 +58,17 @@ input[type="submit"] {
 	padding-right: 6px;
 	opacity: 1;
 }
+.chat-output-noscroll {
+	max-height: 400px;
+	width: 400px;
+	overflow-y: hidden;	
+}
+.chat-output-scroll {
+	max-height: 400px;
+	width: 400px;
+	overflow-y: scroll;	
+}
+
 /*darkmode bitches*/
 .chat-input-darkmode {
 	opacity: .8;

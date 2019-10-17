@@ -11,11 +11,13 @@ function outboundRouter(AppContext, cmd){
 				AppContext.socket.emit(cmd, data);
 				break;
 			case '/pull':
-				
 				AppContext.socket.emit(cmd);
 				break;
 			case '/darkmode':
 				toggleChatDarkmode();
+				break;
+			case '/clear':
+				clearChatLog();
 				break;
 			case '/row':
 				if(cmd_arr[1]){
