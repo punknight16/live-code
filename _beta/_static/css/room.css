@@ -1,0 +1,29 @@
+.chat-bar-position {
+	position: fixed;
+	bottom: 40px;
+	left: 100px;
+}
+
+.chat-log-position {
+	position: fixed;
+	bottom: 80px;
+	left: 100px;
+}
+
+.chat-input-style {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 16px;
+	line-height: 1.8;
+	border: 1px solid gray;
+	border-radius: 4px;
+	padding-left: 6px;
+	padding-right: 6px;
+}
+.chat-output-style {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 16px;
+	line-height: 1.5;
+	padding-left: 6px;
+	padding-right: 6px;
+	opacity: 1;
+}

@@ -19,12 +19,16 @@ function cleanDomMap2(dom_map1, dom_map2){
 		var isFound = dom_map2.find((new_row)=>{
 			return (new_row.model.isSameNode(row.model))
 		});
-		dom_map2.map((obj, index)=>{
-			if(obj.parent == isFound.id){
-				obj.parent = row.id;
-			}
-		});
-		isFound.id = row.id;
+
+		if(isFound){
+			dom_map2.map((obj, index)=>{
+				if(obj.parent == isFound.id){
+					obj.parent = row.id;
+				}
+			});
+			isFound.id = row.id;
+		}
+
 	});
 }
 

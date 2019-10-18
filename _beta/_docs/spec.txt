@@ -1,0 +1,18 @@
+demo
+
+I need to be able talk to the person
+I need to be able to control their screen with my console and make them go whoa
+
+Maybe give them two options
+
+1) play dnd -> door opening animation (with sound), top down room click statue and get text (1x1x1 block puzzle),
+2) create a page -> template --add, section --add, font --cycle, bg-color --cycle, text-color --cycle, timestamp --add (where-ever the focus is)
+
+
+1. solo page with chat bar
+2. create content editable element (display to others in room)
+3. edit content editable element
+
+A. Get it to run on computer (dev branch)
+B. Get it to run on heroku (heroku branch)
+C. Get it to run on Elastic Beanstalk (prod branch)
