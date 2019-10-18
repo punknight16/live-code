@@ -22,8 +22,8 @@ $(function () {
     /*
     console.log('chatlog height: ', $('#chatLog').height());
     console.log('scroll height: ', $('#chatLog')[0].scrollHeight);
-    if($('#chatLog').height() > 400){
-      $('#chatLog').addClass("chat-output-noscroll");
+    if($('#chatLogContainer').height() > 400){
+      $('#chatLogContainer').addClass("chat-output-noscroll");
     }*/
 	});
   //handle up and down arrow keys

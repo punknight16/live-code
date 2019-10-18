@@ -1,5 +1,5 @@
 1. chinese texture pack?
-2. also, it'll be good to see a list of commands that i can implement --DONE
+2. also, it'll be good to see a list of commands that i can implement (NOT DONE /man)
 3. and if i can hit the up arrow to see past commands
 4. like on the linux terminal
 5. yea, I have that in a prior version
