@@ -48,9 +48,11 @@ function addAttributes(node, parent_id, json_doc){
 	if($(node)[0].attributes.length>0){
 		var array = [...$(node)[0].attributes];
 		array.map((att, index)=>{
+			
 			if(att.nodeName !== 'id' && att.nodeName !=='contenteditable'){
 				var id = generateId();
 				var model = node.getAttributeNode(att.nodeName);
+				
 				json_doc.push({id: id, nodetype: 2, tagname: att.nodeName, parent: parent_id, order: index, 
 					model: model, text: att.nodeValue});
 			}

@@ -1,5 +1,1 @@
-[
-	{"id":0,"tagname":"SECTION","parent":null,"order":0},
-	{"id":1,"tagname":"P","parent":0,"order":1},
-	{"id":2,"tagname":"TEXT","parent":1,"order":0,"text":"Goodbye World!"}
-]
+[{"id":"8fl5gk","nodetype":1,"tagname":"SECTION","parent":null,"order":0,"model":{}},{"id":"72hv4","nodetype":1,"tagname":"P","parent":"8fl5gk","order":0,"model":{}},{"id":"2ofkny","nodetype":3,"tagname":"TEXT","parent":"72hv4","order":0,"text":"goodbye world","model":{}}]

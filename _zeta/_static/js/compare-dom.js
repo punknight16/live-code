@@ -61,15 +61,22 @@ function editCmds(dom_map1, dom_map2){
 function addCmds(dom_map1, dom_map2){
 	var add_cmds = [];
 	dom_map2.map((row, index)=>{
+		console.log('row being tested: ', row);
 		var isFound = dom_map1.find((new_row)=>{
 			return (new_row.model.isSameNode(row.model))
 		});
 		if(isFound == undefined){
-			
-			dom_map1.push(row);
-			var el_id = 'node'+row.id;
-			$(row.model).attr('id', el_id);
-			add_cmds.push(row);
+			console.log('row added here: ', row);
+			if(row.nodeType == 1 || row.nodeType == 3){
+				dom_map1.push(row);
+				var el_id = 'node'+row.id;
+				$(row.model).attr('id', el_id);
+				add_cmds.push(row);
+			} else {
+				//nodeType == 2
+				dom_map1.push(row);
+				add_cmds.push(row);
+			}
 		}
 	})
 	return add_cmds;

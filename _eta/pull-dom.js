@@ -1,7 +1,7 @@
 function pullDOM(dom_map){
 	$('#main').empty();
 		//sort by the order attribute
-	//dom_map.sort(compare);
+	dom_map.sort(compare);
 	AppContext.dom_map = dom_map;
 	//build the dom into html
 	dom_map.map((node, index)=>{
@@ -44,13 +44,9 @@ function pullDOM(dom_map){
 
 //helper function for sorting by order attribute
 function compare(a,b) {
- 	if(a.nodetype > b.nodetype) return 1;
- 	if(b.nodetype > a.nodetype) return -1;
- 	else {
- 		if (a.order < b.order)
+  if (a.order < b.order)
      return -1;
-	  if (a.order > b.order)
-	    return 1;
-	  return 0;
-	}
+  if (a.order > b.order)
+    return 1;
+  return 0;
 }

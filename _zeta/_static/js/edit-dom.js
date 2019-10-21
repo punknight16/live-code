@@ -127,7 +127,10 @@ function editRow(node){
 
 function addRow(node){
 	console.log('node added: ', node);
-	if(node.tagname!=='TEXT'){
+	if(node.nodetype == 2){
+			var node_id = '#node'+node.parent;
+			$(node_id).attr(node.tagname, node.text);
+	} else if (node.tagname!=='TEXT'){
 		//non-Text nodes
 		node.model = document.createElement(node.tagname);
 		var $node = $(node.model);

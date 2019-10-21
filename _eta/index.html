@@ -1,0 +1,28 @@
+<html>
+<head>
+	<script
+		  src="https://code.jquery.com/jquery-3.4.1.js"
+		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		  crossorigin="anonymous"></script>
+	<script src="./push-dom.js"></script>
+	<script src="./pull-dom.js"></script>
+	<style> #main { font-family: 'helvetica'}</style>
+</head>
+<body>
+	<main id='main'>
+		<section><a href='http://www.punknight.com'>My Website</a></section>
+	</main>
+	<script>
+		var AppContext = {};
+		var test = pushDOM();
+		pullDOM(test);
+		setTimeout(function(){
+			var test2 = pushDOM();
+		console.log('test2: ', test2);
+		pullDOM(test2);
+
+		}, 5000);
+		
+	</script>
+</body>
+</html>
