@@ -1,0 +1,13 @@
+when you change something using the browser dev tools, you need to change the class names and push
+
+1. hey are you a react developer
+2. hotload javascript script for react
+3. some specific query to see if you pull the right component based on classes and index
+5. after verfication fetch the snippet
+6. style it live
+7. generate a css 
+8. pay someone to style this shit
+
+Uber for UX, that's funny
+
+9. load the phone version and desktop version on the same screen
