@@ -8,6 +8,10 @@ function socketRouter(socket, cmd, data, io){
 				console.log('/row fired');
 				socket.broadcast.emit(cmd);
 				break;
+			case '/css':
+				console.log('/css fired');
+				socket.broadcast.emit(cmd);
+				break;
 			case '/pull':
 				console.log('/pull fired')
 				pullDOM(socket, cmd_arr[1]);

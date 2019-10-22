@@ -26,7 +26,7 @@ function crawlNode(target_node, parent_id, json_doc){
 		console.log('nodeType: ', node.nodeType);
 		if(node.nodeType == 3){
 			//what do if text node?
-			//if(JSON.stringify(node.nodeValue).match(/\\/));
+			if(JSON.stringify(node.nodeValue).match(/\\/));
 			//json_doc[parent_id].text = node.nodeValue;
 			var id = generateId();
 			json_doc.push({id: id, nodetype: 3, tagname: 'TEXT', parent: parent_id, order: index, 

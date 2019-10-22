@@ -1,8 +1,8 @@
 var AppContext = {};
 AppContext.socket = io(window.location.href, {transports: ['websocket']});
 //test cases
-AppContext.socket.emit('/pull goodbye.json', {data: 'hi'});
-AppContext.socket.emit('/push test.json', {data: 'hi'});
+//AppContext.socket.emit('/pull goodbye.json', {data: 'hi'});
+//AppContext.socket.emit('/push button.json', {data: 'hi'});
 //create universal character
 var onevent = AppContext.socket.onevent;
 AppContext.socket.onevent = function (packet) {

@@ -6,7 +6,6 @@ function outboundRouter(AppContext, cmd){
 		
 		switch(cmd_arr[0]){
 			case '/push':
-				
 				var data = pushDOM(cmd[1]);
 				AppContext.socket.emit(cmd, data);
 				break;
@@ -18,6 +17,14 @@ function outboundRouter(AppContext, cmd){
 				break;
 			case '/clear':
 				clearChatLog();
+				break;
+			case '/css':
+				if(cmd_arr[1]){
+					AppContext.socket.emit(cmd);
+					editCSS(cmd_arr[1], cmd_arr[2], AppContext);
+				} else {
+					chatError('<need arguments "/css --flag [css_url] "');
+				}
 				break;
 			case '/row':
 				if(cmd_arr[1]){
