@@ -26,10 +26,10 @@ function crawlNode(target_node, parent_id, json_doc){
 		
 		if(node.nodeType == 3){
 			//what do if text node?
-			console.log('nodeValue: ', JSON.stringify(node.nodeValue).replace(/\\n\s+/g, "").length);
+			//console.log('nodeValue: ', JSON.stringify(node.nodeValue).replace(/\\n\s+/g, "").length);
 			if(JSON.stringify(node.nodeValue).replace(/\\n\s+/g, "").length==2){
 				//do nothing
-				console.log('matched');
+				//console.log('matched');
 			} else {
 				//json_doc[parent_id].text = node.nodeValue;
 				var id = generateId();

@@ -76,10 +76,11 @@ function splitTextNode(caret_selection){
 }
 */
 function getRow(node){
+	console.log('node searching for: ', node);
 	return AppContext.dom_map.find((dom_row)=>{
-		console.log("dom_row: ", dom_row);
-		console.log("dom_row.model here1A: ", dom_row.model.nodeType);
-		return (node.isEqualNode(dom_row.model));
+		if(dom_row.model.nodeType){
+			return (node.isSameNode(dom_row.model));	
+		}
 	});
 }
 

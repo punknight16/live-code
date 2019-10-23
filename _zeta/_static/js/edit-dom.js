@@ -1,7 +1,13 @@
 function editDOM(flag, data, AppContext){
-	//test case /row --add '[{"id":6,"tagname":"BUTTON","parent":0,"order":3},{"id":7,"tagname":"TEXT","parent":6,"order":0,"text":"HI"}]'
-	//test case /row --edit '[{"id":7,"tagname":"TEXT","parent":6,"order":0,"text":"SUBMIT"}]'
-	//test case /row --destroy '[{"id":6,"tagname":"BUTTON","parent":0,"order":3},{"id":7,"tagname":"TEXT","parent":6,"order":0,"text":"HI"}]'
+	//test case /pull goodbye.json
+	//test case /row --add '[{"id":"abc","tagname":"BUTTON","parent":"8fl5gk","order":2}, {"id":"def","nodetype":2,"tagname":"class","parent":"abc","order":0,"text":"button is-primary btn btn-primary mui-btn mui-btn--primary"},{"id":"ghi","tagname":"TEXT","parent":"abc","order":0,"text":"HI"}]'
+	//test case /row --edit '[{"id":"ghi","tagname":"TEXT","parent":6,"order":0,"text":"SUBMIT"}]'
+	//test case /row --destroy '[{"id":"abc"}, {"id":"def"}, {"id":"ghi"}]'
+	//test case /row --insert '[{"id":"ghi", "tagname": "TEXT", "offset": 0, "text":"Ok, "}]'
+	//test case /row --insert '[{"id":"def", "tagname": "class", "offset": 0, "text":"test_class "}]'
+	//test case /row --replace '[{"id":"ghi", "tagname": "TEXT", "search_str": "HI", "new_str":"Submit Now"}]'
+	//test case /row --swap '[{"tagname": "TEXT", "search_str": "HI", "new_str":"Submit Now"}]'
+	//test case /row --swap '[{"tagname": "class", "search_str": "btn", "new_str":"removed_btn"}]'
 	var node_id = '';
 	switch(flag){
 		case '--sort':
@@ -10,7 +16,6 @@ function editDOM(flag, data, AppContext){
 		case '--list':
 			//show table modal
 			callModal(JSON.stringify(AppContext.dom_map.map((row)=>{
-				console.log('row.model is of type node: ', row.model.nodeType);
 				var hasModel = (row.model.nodeType > 0);
 				if(row.tagname=='TEXT' || row.nodetype == 2){
 					return {"id":row.id, "nodetype": row.nodetype, "tagname": row.tagname, "parent": row.parent, "order": row.order, "text": row.text, "hasModel": hasModel};
@@ -40,12 +45,29 @@ function editDOM(flag, data, AppContext){
 			});
 			break;
 		case '--destroy':
-			
 			var row_arr = JSON.parse(data.substring(1, data.length-1));
 			row_arr.map((row, index)=>{
 				destroyRow(row);
-				node_id = row.parent
 			}); 
+			break;
+		case '--insert':
+			var row_arr = JSON.parse(data.substring(1, data.length-1));
+			row_arr.map((row, index)=>{
+				insertValue(row);
+			});
+			break;
+		case '--replace':
+			var row_arr = JSON.parse(data.substring(1, data.length-1));
+			row_arr.map((row, index)=>{
+				replaceValue(row);
+			});
+			break;
+		case '--swap':
+			var row_arr = JSON.parse(data.substring(1, data.length-1));
+			row_arr.map((row, index)=>{
+				swapValue(row);
+			});
+			break;
 			break;
 		default:
 			console.log('flag not found');
@@ -75,21 +97,83 @@ function setCaretPos(el){
 }
 
 function destroyRow(node){
-	var found_row = AppContext.dom_map.find((row)=>{
+	var found_row_index = AppContext.dom_map.findIndex((row)=>{
 		return (row.id == node.id)
 	});
-	if(found_row == undefined){
+	if(found_row_index == -1){
 		throw 'node_id does not exist';
+	} else {
+		var found_row = AppContext.dom_map[found_row_index];
+		found_row.model.parentNode.removeChild(found_row.model);
+		AppContext.dom_map.splice(found_row_index, 1);
 	}
-	found_row.model.parentNode.removeChild(found_row.model);
+	
+}
+
+function swapValue(node){
+	if(node.tagname == 'TEXT' || node.tagname == 'class'){
+		AppContext.dom_map.map((row)=>{
+			if(node.tagname == row.tagname){
+				var new_text = row.text.replace(node.search_str, node.new_str);
+				row.model.nodeValue = new_text;
+				row.text = new_text;
+			}
+		});
+	}
+}
+
+function replaceValue(node){
+	if(node.tagname == 'TEXT' || node.tagname == 'class'){
+		var found_row = AppContext.dom_map.find((row)=>{
+				return (row.id == node.id)
+			});
+		if(found_row == undefined){
+			throw 'node_id does not exist';
+		}
+		var new_text = found_row.text.replace(node.search_str, node.new_str); 
+		found_row.model.nodeValue = new_text;
+		found_row.text = new_text;
+	}
 }
 
 
+function insertValue(node){
+	console.log('here at insert value');
+	switch(node.tagname){
+		case 'TEXT':
+			var found_row = AppContext.dom_map.find((row)=>{
+				return (row.id == node.id)
+			});
+			if(found_row == undefined){
+				throw 'node_id does not exist';
+			}
+			var left_text = found_row.text.slice(0, node.offset); 
+			var right_text = found_row.text.slice(node.offset);
+			found_row.model.nodeValue = left_text + node.text + right_text;
+			found_row.text = left_text + node.text + right_text;
+			break;
+		case 'class':
+			var found_row = AppContext.dom_map.find((row)=>{
+				return (row.id == node.id)
+			});
+			if(found_row == undefined){
+				throw 'node_id does not exist';
+			}
+			var left_text = found_row.text.slice(0, node.offset); 
+			var right_text = found_row.text.slice(node.offset);
+			found_row.model.nodeValue = left_text + node.text + right_text;
+			found_row.text = left_text + node.text + right_text;
+			break;
+		default:
+			console.log('no tagname');
+	}	
+}
+
 function editRow(node){
-	console.log('edit Row fired!');
-	console.log('node.tagname: ', node.tagname);
+	
+	
 	if(node.tagname=='TEXT'){
-		console.log('should be here!');
+		
 		var found_row = AppContext.dom_map.find((row)=>{
 			return (row.id == node.id)
 		});
@@ -118,9 +202,9 @@ function editRow(node){
 		found_row.parent = node.parent;
 		if(found_row.order !=node.order || found_row.parent != node.parent){
 			found_row.order = node.order;
-			console.log('p found_row.model before: ', found_row.model);
+			
 			found_row.model.remove();
-			console.log('p found_row.model after: ', found_row.model);
+			
 			var parent_row = getRowByID(found_row.parent);
 			placeNode(found_row, parent_row);
 		}
@@ -128,11 +212,11 @@ function editRow(node){
 }
 
 function addRow(node){
-	console.log('node added: ', node);
+	
 	if(node.nodetype == 2){
 			var node_id = '#node'+node.parent;
 			$(node_id).attr(node.tagname, node.text);
-			console.log('IM HERE NOW AAAAAA');
+			
 			node.model = $(node_id)[0].getAttributeNode(node.tagname);
 	} else if (node.tagname!=='TEXT'){
 		//non-Text nodes
@@ -159,9 +243,9 @@ function addRow(node){
 		
 		if(JSON.stringify(node.text).replace(/\\n\s+/g, "").length==2){
 			//do nothing
-			console.log('matched')
+			
 		} else {
-			console.log('im here in the text node');
+			
 			
 			var node_parent = '#node'+node.parent;
 			var checkExist = setInterval(function() {
@@ -177,52 +261,34 @@ function addRow(node){
 }
 
 function placeNode(row, parent_row){
-	console.log('row: ', row);
 	console.log('parent_row: ', parent_row);
 	var array = [ ...parent_row.model.childNodes ];
-	console.log('p row.model: ', row.model);
-	console.log('childNodes: ', parent_row.model.childNodes);
 	if(array.length==0){
-		console.log('here 1');
-		
 		$(parent_row.model).append($(row.model));
 		
 	} else  {
-		console.log('here 2');
 		var json_doc = [];
+		console.log('array: ', array);
 		array.map((test_node)=>{
-			json_doc.push(getRow(test_node));
-		})
+			var found_row = getRow(test_node);
+			if(found_row !== undefined){
+				json_doc.push(found_row);	
+			}
+		});
 		json_doc.sort(tagSort);
-
+		console.log('json_doc: ', json_doc);
+		console.log('row.order: ', row.order);
 		for (var i = 0; i < json_doc.length; i++) {
 			if(json_doc[i].order > row.order){
-				console.log('HERE A');
-				console.log('row.model: ', row.model);
-				console.log('test_row.mode: ', json_doc[i].model);
 				$(row.model).insertBefore($(json_doc[i].model));
 				break;
 			} else if (i == json_doc.length-1){
-				console.log('HERE B');
-				console.log('row.model: ', row.model);
-				console.log('test_row.model: ', json_doc[i].model);
 				$(parent_row.model).append(row.model);
 				break;
 			} else if (json_doc[i].order<row.order && json_doc[i+1]>row.order){
-				console.log('HERE C');
-				console.log('row.model: ', row.model);
-				console.log('test_row.mode: ', json_doc[i].model);
 				$(row.model).insertAfter($(json_doc[i].model));
 				break;
 			}
 		};
 	}
 };
-/*
-function getSiblingRow(row){
-	var sibling_row = AppContext.dom_map.find((test_row)=>{
-		return (test_row.parent == row.parent && row.order+1 == test_row.order);
-	})
-	console.log('sibling_row: ', sibling_row);
-	return sibling_row;
-}*/
