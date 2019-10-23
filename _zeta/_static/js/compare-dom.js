@@ -1,5 +1,7 @@
 function compareDom(){
-	
+	if(typeof AppContext.dom_map == 'undefined'){
+		AppContext.dom_map = buildDomMap();
+	}
 	var dom_map1 = AppContext.dom_map;
 	var dom_map2 = buildDomMap(AppContext);
 	cleanDomMap2(dom_map1, dom_map2);

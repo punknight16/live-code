@@ -23,14 +23,19 @@ function crawlNode(target_node, parent_id, json_doc){
 	addAttributes(target_node, parent_id, json_doc);
 
 	array.map((node, index)=>{
-		console.log('nodeType: ', node.nodeType);
+		
 		if(node.nodeType == 3){
 			//what do if text node?
-			//if(JSON.stringify(node.nodeValue).match(/\\/));
-			//json_doc[parent_id].text = node.nodeValue;
-			var id = generateId();
-			json_doc.push({id: id, nodetype: 3, tagname: 'TEXT', parent: parent_id, order: index, 
-				text: node.nodeValue, model: node});
+			console.log('nodeValue: ', JSON.stringify(node.nodeValue).replace(/\\n\s+/g, "").length);
+			if(JSON.stringify(node.nodeValue).replace(/\\n\s+/g, "").length==2){
+				//do nothing
+				console.log('matched');
+			} else {
+				//json_doc[parent_id].text = node.nodeValue;
+				var id = generateId();
+				json_doc.push({id: id, nodetype: 3, tagname: 'TEXT', parent: parent_id, order: index, 
+					text: node.nodeValue, model: node});
+			}
 		} else {
 			var id = generateId();
 			json_doc.push({id: id, nodetype:1, tagname: node.tagName, parent: parent_id, order: index, 

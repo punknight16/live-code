@@ -3,6 +3,9 @@ AppContext.socket = io(window.location.href, {transports: ['websocket']});
 //test cases
 //AppContext.socket.emit('/pull goodbye.json', {data: 'hi'});
 //AppContext.socket.emit('/push button.json', {data: 'hi'});
+if(typeof AppContext.dom_map == 'undefined'){
+	AppContext.dom_map = buildDomMap();
+}
 //create universal character
 var onevent = AppContext.socket.onevent;
 AppContext.socket.onevent = function (packet) {

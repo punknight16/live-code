@@ -10,10 +10,12 @@ function editDOM(flag, data, AppContext){
 		case '--list':
 			//show table modal
 			callModal(JSON.stringify(AppContext.dom_map.map((row)=>{
-				if(row.tagname=='TEXT'){
-					return {"id":row.id, "tagname": row.tagname, "parent": row.parent, "order": row.order, "text": row.text};
+				console.log('row.model is of type node: ', row.model.nodeType);
+				var hasModel = (row.model.nodeType > 0);
+				if(row.tagname=='TEXT' || row.nodetype == 2){
+					return {"id":row.id, "nodetype": row.nodetype, "tagname": row.tagname, "parent": row.parent, "order": row.order, "text": row.text, "hasModel": hasModel};
 				} else {
-					return {"id":row.id, "tagname": row.tagname, "parent": row.parent, "order": row.order};
+					return {"id":row.id, "nodetype": row.nodetype, "tagname": row.tagname, "parent": row.parent, "order": row.order, "hasModel": hasModel};
 				}
 				
 			})));
@@ -130,6 +132,8 @@ function addRow(node){
 	if(node.nodetype == 2){
 			var node_id = '#node'+node.parent;
 			$(node_id).attr(node.tagname, node.text);
+			console.log('IM HERE NOW AAAAAA');
+			node.model = $(node_id)[0].getAttributeNode(node.tagname);
 	} else if (node.tagname!=='TEXT'){
 		//non-Text nodes
 		node.model = document.createElement(node.tagname);
@@ -153,26 +157,38 @@ function addRow(node){
 		}
 	} else {
 		
-		//if(JSON.stringify(node.text).match(/\\/));
-		//else {
+		if(JSON.stringify(node.text).replace(/\\n\s+/g, "").length==2){
+			//do nothing
+			console.log('matched')
+		} else {
+			console.log('im here in the text node');
+			
 			var node_parent = '#node'+node.parent;
 			var checkExist = setInterval(function() {
 		   if ($(node_parent).length) {
 		   		node.model = document.createTextNode(node.text);
-		      $(node_parent).append(node.model);
+		      var parent_row = getRowByID(node.parent);
+					placeNode(node, parent_row);
 		      clearInterval(checkExist);
 				}
 			}, 100);
-		//}
+		}
 	}
 }
 
 function placeNode(row, parent_row){
+	console.log('row: ', row);
+	console.log('parent_row: ', parent_row);
 	var array = [ ...parent_row.model.childNodes ];
 	console.log('p row.model: ', row.model);
+	console.log('childNodes: ', parent_row.model.childNodes);
 	if(array.length==0){
+		console.log('here 1');
+		
 		$(parent_row.model).append($(row.model));
+		
 	} else  {
+		console.log('here 2');
 		var json_doc = [];
 		array.map((test_node)=>{
 			json_doc.push(getRow(test_node));

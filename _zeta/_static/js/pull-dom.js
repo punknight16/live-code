@@ -3,6 +3,12 @@ function pullDOM(dom_map){
 		//sort by the order attribute
 	//dom_map.sort(compare);
 	AppContext.dom_map = dom_map;
+	dom_map.map((row, index)=>{
+		
+			addRow(row);	
+		
+	});
+	/*
 	//build the dom into html
 	dom_map.map((node, index)=>{
 		if(node.nodetype == 2){
@@ -39,7 +45,7 @@ function pullDOM(dom_map){
 				}, 100);
 			//}
 		}
-	});
+	});*/
 };
 
 //helper function for sorting by order attribute
