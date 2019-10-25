@@ -1,4 +1,5 @@
 var fs = require('fs');
+var runScraper = require('../_lib/scraper.js');
 
 function socketRouter(socket, cmd, data, io){
 	if(cmd.substring(0, 1) == '/'){
@@ -8,6 +9,10 @@ function socketRouter(socket, cmd, data, io){
 				console.log('/row fired');
 				socket.broadcast.emit(cmd);
 				break;
+			case '/css':
+				console.log('/css fired');
+				socket.broadcast.emit(cmd);
+				break;
 			case '/pull':
 				console.log('/pull fired')
 				pullDOM(socket, cmd_arr[1]);
@@ -15,6 +20,14 @@ function socketRouter(socket, cmd, data, io){
 			case '/push':
 				console.log('/push fired');
 				pushDOM(socket, cmd_arr[1], data);
+				break;
+			case '/fetch':
+				if(cmd_arr[2]==undefined){
+					cmd_arr[2] = "http://www.punknight.com/";
+				}
+				runScraper(cmd_arr[2]).then(function(results){
+			    fetchDOM(socket, cmd_arr[1], results);
+				}).catch(console.error);
 				break;
 			default:
 				console.log(cmd);
@@ -52,6 +65,19 @@ function pushDOM(socket, filename, data){
 		}
 	});
 }
+
+function fetchDOM(socket, filename, data){
+	var abs_path = __dirname.substring(0, __dirname.length - 4);
+	writeFile(abs_path+ '/_data/'+filename, data, function(err){
+		if(err){
+			socket.emit('msg', `<error: '${err}'>`);
+		} else {
+			socket.emit('msg', `/fetch ${filename}`);	
+			socket.emit('msg', '<file saved>');
+		}
+	});
+}
+
 
 function readFile(file_path, cb){
 	fs.exists(file_path, function(exists){

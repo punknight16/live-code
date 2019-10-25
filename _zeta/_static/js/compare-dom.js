@@ -1,5 +1,9 @@
 function compareDom(){
-	
+
+	if(typeof AppContext.dom_map == 'undefined'){
+		AppContext.dom_map = buildDomMap();
+	}
+
 	var dom_map1 = AppContext.dom_map;
 	var dom_map2 = buildDomMap(AppContext);
 	cleanDomMap2(dom_map1, dom_map2);
@@ -67,11 +71,25 @@ function addCmds(dom_map1, dom_map2){
 			return (new_row.model.isSameNode(row.model))
 		});
 		if(isFound == undefined){
+
 			
 			dom_map1.push(row);
 			var el_id = 'node'+row.id;
 			$(row.model).attr('id', el_id);
 			add_cmds.push(row);
+
+			console.log('row added here: ', row);
+			if(row.nodeType == 1 || row.nodeType == 3){
+				dom_map1.push(row);
+				var el_id = 'node'+row.id;
+				$(row.model).attr('id', el_id);
+				add_cmds.push(row);
+			} else {
+				//nodeType == 2
+				dom_map1.push(row);
+				add_cmds.push(row);
+			}
+
 		}
 	})
 	return add_cmds;

@@ -1,14 +1,8 @@
 function pullDOM(dom_map){
 	$('#main').empty();
 		//sort by the order attribute
-	//dom_map.sort(compare);
+	dom_map.sort(compare);
 	AppContext.dom_map = dom_map;
-	dom_map.map((row, index)=>{
-		
-			addRow(row);	
-		
-	});
-	/*
 	//build the dom into html
 	dom_map.map((node, index)=>{
 		if(node.nodetype == 2){
@@ -20,7 +14,6 @@ function pullDOM(dom_map){
 			//new code for tracking actions
 					//$node.on("keydown", handleKeypress);
 					//$node.on("input", handleInput);
->>>>>>> dev
 			//end new code
 			var node_id = 'node'+node.id
 			$node.attr('id', node_id );
@@ -46,18 +39,14 @@ function pullDOM(dom_map){
 				}, 100);
 			//}
 		}
-	});*/
+	});
 };
 
 //helper function for sorting by order attribute
 function compare(a,b) {
- 	if(a.nodetype > b.nodetype) return 1;
- 	if(b.nodetype > a.nodetype) return -1;
- 	else {
- 		if (a.order < b.order)
+  if (a.order < b.order)
      return -1;
-	  if (a.order > b.order)
-	    return 1;
-	  return 0;
-	}
+  if (a.order > b.order)
+    return 1;
+  return 0;
 }

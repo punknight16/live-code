@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "name": "live-code_zeta",
   "version": "0.6.3",
+=======
+  "name": "live-code_delta",
+  "version": "0.0.4",
+>>>>>>> dev
   "description": "Minimalist chat server and dom editing",
   "dependencies": {
     "express": "^4.17.1",

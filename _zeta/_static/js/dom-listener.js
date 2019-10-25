@@ -77,7 +77,9 @@ function splitTextNode(caret_selection){
 */
 function getRow(node){
 	return AppContext.dom_map.find((dom_row)=>{
-		return (node.isEqualNode(dom_row.model));
+		if(dom_row.model.nodeType){
+			return (node.isSameNode(dom_row.model));	
+		}
 	});
 }
 

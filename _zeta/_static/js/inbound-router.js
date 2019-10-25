@@ -10,6 +10,10 @@ function inboundRouter(AppContext, cmd, data){
 				console.log('cmd_arr: ', JSON.stringify(cmd_arr));
 				editDOM(cmd_arr[1], cmd_arr[2], AppContext);
 				break;
+			case '/css':
+				console.log('css fired');
+				editCSS(cmd_arr[1], cmd_arr[2], AppContext);
+				break;
 			default:
 				console.log('echo cmd: ', cmd);
 			  console.log('echo data: ', data);

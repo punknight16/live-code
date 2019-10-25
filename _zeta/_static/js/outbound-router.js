@@ -6,7 +6,7 @@ function outboundRouter(AppContext, cmd){
 		
 		switch(cmd_arr[0]){
 			case '/push':
-				
+
 				var data = pushDOM(cmd[1]);
 				AppContext.socket.emit(cmd, data);
 				break;
@@ -18,6 +18,17 @@ function outboundRouter(AppContext, cmd){
 				break;
 			case '/clear':
 				clearChatLog();
+				break;
+			case '/fetch':
+				AppContext.socket.emit(cmd);
+				break;
+			case '/css':
+				if(cmd_arr[1]){
+					AppContext.socket.emit(cmd);
+					editCSS(cmd_arr[1], cmd_arr[2], AppContext);
+				} else {
+					chatError('<need arguments "/css --flag [css_url] "');
+				}
 				break;
 			case '/row':
 				if(cmd_arr[1]){
@@ -45,11 +56,11 @@ function outboundRouter(AppContext, cmd){
 				var add_str = '';
 				add_cmds.map((obj, index)=>{
 					if(index == add_cmds.length-1){
-						add_str += `{"id": "${obj.id}", "tagname": "${obj.tagname}", "parent": "${obj.parent}", "order": ${obj.order}`;
+						add_str += `{"id": "${obj.id}", "nodetype": "${obj.nodetype}", "tagname": "${obj.tagname}", "parent": "${obj.parent}", "order": ${obj.order}`;
 						if(obj.text) add_str += `, "text": "${obj.text}"}`;
 						else add_str += `}`;
 					} else {
-						add_str += `{"id": "${obj.id}", "tagname": "${obj.tagname}", "parent": "${obj.parent}", "order": ${obj.order}`;
+						add_str += `{"id": "${obj.id}", "nodetype": "${obj.nodetype}", "tagname": "${obj.tagname}", "parent": "${obj.parent}", "order": ${obj.order}`;
 						if(obj.text) add_str += `, "text": "${obj.text}"},`;
 						else add_str += `},`;
 					}
@@ -59,11 +70,11 @@ function outboundRouter(AppContext, cmd){
 				var edit_str = '';
 				edit_cmds.map((obj, index)=>{
 					if(index == edit_cmds.length-1){
-						edit_str += `{"id": "${obj.id}", "tagname": "${obj.tagname}", "parent": "${obj.parent}", "order": ${obj.order}`;
+						edit_str += `{"id": "${obj.id}", "nodetype": "${obj.nodetype}", "tagname": "${obj.tagname}", "parent": "${obj.parent}", "order": ${obj.order}`;
 						if(obj.text) edit_str += `, "text": "${obj.text}"}`;
 						else edit_str += `}`;
 					} else {
-						edit_str += `{"id": "${obj.id}", "tagname": "${obj.tagname}", "parent": "${obj.parent}", "order": ${obj.order}`;
+						edit_str += `{"id": "${obj.id}", "nodetype": "${obj.nodetype}", "tagname": "${obj.tagname}", "parent": "${obj.parent}", "order": ${obj.order}`;
 						if(obj.text) edit_str += `, "text": "${obj.text}"},`;
 						else edit_str += `},`;
 					}
