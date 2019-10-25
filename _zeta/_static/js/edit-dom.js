@@ -1,9 +1,4 @@
 function editDOM(flag, data, AppContext){
-
-	//test case /row --add '[{"id":6,"tagname":"BUTTON","parent":0,"order":3},{"id":7,"tagname":"TEXT","parent":6,"order":0,"text":"HI"}]'
-	//test case /row --edit '[{"id":7,"tagname":"TEXT","parent":6,"order":0,"text":"SUBMIT"}]'
-	//test case /row --destroy '[{"id":6,"tagname":"BUTTON","parent":0,"order":3},{"id":7,"tagname":"TEXT","parent":6,"order":0,"text":"HI"}]'
-
 	//test case /pull goodbye.json
 	//test case /row --add '[{"id":"abc","tagname":"BUTTON","parent":"8fl5gk","order":2}, {"id":"def","nodetype":2,"tagname":"class","parent":"abc","order":0,"text":"button is-primary btn btn-primary mui-btn mui-btn--primary"},{"id":"ghi","tagname":"TEXT","parent":"abc","order":0,"text":"HI"}]'
 	//test case /row --edit '[{"id":"ghi","tagname":"TEXT","parent":6,"order":0,"text":"SUBMIT"}]'
@@ -13,7 +8,6 @@ function editDOM(flag, data, AppContext){
 	//test case /row --replace '[{"id":"ghi", "tagname": "TEXT", "search_str": "HI", "new_str":"Submit Now"}]'
 	//test case /row --swap '[{"tagname": "TEXT", "search_str": "HI", "new_str":"Submit Now"}]'
 	//test case /row --swap '[{"tagname": "class", "search_str": "btn", "new_str":"removed_btn"}]'
-
 	var node_id = '';
 	switch(flag){
 		case '--sort':
@@ -22,13 +16,11 @@ function editDOM(flag, data, AppContext){
 		case '--list':
 			//show table modal
 			callModal(JSON.stringify(AppContext.dom_map.map((row)=>{
-
 				var hasModel = (row.model.nodeType > 0);
 				if(row.tagname=='TEXT' || row.nodetype == 2){
 					return {"id":row.id, "nodetype": row.nodetype, "tagname": row.tagname, "parent": row.parent, "order": row.order, "text": row.text, "hasModel": hasModel};
 				} else {
 					return {"id":row.id, "nodetype": row.nodetype, "tagname": row.tagname, "parent": row.parent, "order": row.order, "hasModel": hasModel};
-
 				}
 				
 			})));
@@ -75,6 +67,7 @@ function editDOM(flag, data, AppContext){
 			row_arr.map((row, index)=>{
 				swapValue(row);
 			});
+			break;
 			break;
 		default:
 			console.log('flag not found');
@@ -180,6 +173,7 @@ function editRow(node){
 	
 	
 	if(node.tagname=='TEXT'){
+		
 		var found_row = AppContext.dom_map.find((row)=>{
 			return (row.id == node.id)
 		});
@@ -208,6 +202,7 @@ function editRow(node){
 		found_row.parent = node.parent;
 		if(found_row.order !=node.order || found_row.parent != node.parent){
 			found_row.order = node.order;
+			
 			found_row.model.remove();
 			
 			var parent_row = getRowByID(found_row.parent);
@@ -217,10 +212,6 @@ function editRow(node){
 }
 
 function addRow(node){
-
-	console.log('node added: ', node);
-	if(node.tagname!=='TEXT'){
-
 	
 	if(node.nodetype == 2){
 			var node_id = '#node'+node.parent;
@@ -228,7 +219,6 @@ function addRow(node){
 			
 			node.model = $(node_id)[0].getAttributeNode(node.tagname);
 	} else if (node.tagname!=='TEXT'){
-
 		//non-Text nodes
 		node.model = document.createElement(node.tagname);
 		var $node = $(node.model);
@@ -251,17 +241,12 @@ function addRow(node){
 		}
 	} else {
 		
-
-		//if(JSON.stringify(node.text).match(/\\/));
-		//else {
-
 		if(JSON.stringify(node.text).replace(/\\n\s+/g, "").length==2){
 			//do nothing
 			
 		} else {
 			
 			
-
 			var node_parent = '#node'+node.parent;
 			var checkExist = setInterval(function() {
 		   if ($(node_parent).length) {
@@ -276,36 +261,6 @@ function addRow(node){
 }
 
 function placeNode(row, parent_row){
-
-	var array = [ ...parent_row.model.childNodes ];
-	console.log('p row.model: ', row.model);
-	if(array.length==0){
-		$(parent_row.model).append($(row.model));
-	} else  {
-		var json_doc = [];
-		array.map((test_node)=>{
-			json_doc.push(getRow(test_node));
-		})
-		json_doc.sort(tagSort);
-
-		for (var i = 0; i < json_doc.length; i++) {
-			if(json_doc[i].order > row.order){
-				console.log('HERE A');
-				console.log('row.model: ', row.model);
-				console.log('test_row.mode: ', json_doc[i].model);
-				$(row.model).insertBefore($(json_doc[i].model));
-				break;
-			} else if (i == json_doc.length-1){
-				console.log('HERE B');
-				console.log('row.model: ', row.model);
-				console.log('test_row.model: ', json_doc[i].model);
-				$(parent_row.model).append(row.model);
-				break;
-			} else if (json_doc[i].order<row.order && json_doc[i+1]>row.order){
-				console.log('HERE C');
-				console.log('row.model: ', row.model);
-				console.log('test_row.mode: ', json_doc[i].model);
-
 	console.log('parent_row: ', parent_row);
 	var array = [ ...parent_row.model.childNodes ];
 	if(array.length==0){
@@ -331,7 +286,6 @@ function placeNode(row, parent_row){
 				$(parent_row.model).append(row.model);
 				break;
 			} else if (json_doc[i].order<row.order && json_doc[i+1]>row.order){
-
 				$(row.model).insertAfter($(json_doc[i].model));
 				break;
 			}
